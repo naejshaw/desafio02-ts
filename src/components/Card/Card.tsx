@@ -1,26 +1,12 @@
-import {  
-    Input,
-    Box,
-    Center,
-  } from '@chakra-ui/react';
-  import { Botao } from '../Botao/Botao';
-import { login } from '../../services/login/login';
+import { Box } from '@chakra-ui/react';
   
-  export const Card = () => {
+export const Card = ({children}: any) => {
+
     return(
       <div>
         <Box minHeight='100vh' backgroundColor='#5b44a6' padding='25px'>
-        <Box backgroundColor='#FFFFFF' borderRadius='25px' padding='15px'>
-          <Center>
-            <h1>Faça Login</h1>
-          </Center>
-          <Input placeholder='username' />
-          <Input placeholder='password' />
-          <Center>
-            <Botao title='Entrar' event={login} />
-          </Center>
+          {children}
         </Box>
-      </Box>
       </div>
     )
   }

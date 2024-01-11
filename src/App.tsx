@@ -1,15 +1,23 @@
-
+import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
-import { Header } from './components/Header/Header';
-import { Card } from './components/Card/Card';
+import { Layout } from './components/Layout/Layout';
+import { AppContextProvider } from './components/AppContext/AppContext';
+import MainRoutes from './routes';
+  
 
 
 function App() {
+  
   return (
-    <ChakraProvider cssVarsRoot={undefined}>
-      <Header />
-      <Card />
-    </ChakraProvider>
+    <BrowserRouter>
+      <AppContextProvider>
+        <ChakraProvider>
+          <Layout>
+            <MainRoutes />
+          </Layout>
+        </ChakraProvider>
+      </AppContextProvider>
+    </BrowserRouter>
   );
 }
 

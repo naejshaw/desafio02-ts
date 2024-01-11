@@ -1,13 +1,33 @@
-import { Box, Heading } from '@chakra-ui/layout'
+import { Box, Flex, Heading, Spacer } from '@chakra-ui/layout'
+import { useContext } from 'react'
+import { AppContext } from '../AppContext/AppContext'
+import { Button } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 export const Header = () => {
+    const {isLoggedIn, setIsLoggedIn} = useContext(AppContext)
+    const navigate = useNavigate()
+    const logout = () => {
+        setIsLoggedIn(false)
+        navigate('/')
+    }
     return (
-        <Box>
-            <Heading as='h2' size='3xl' noOfLines={1} textAlign='center' backgroundColor='#5b44a6' color='#FFFFFF'>
-                Dio Bank
-            </Heading>
-            <Heading as='h4' size='md' noOfLines={1} textAlign='center' backgroundColor='#5b44a6' color='#FFFFFF'>
-                o caminho mais fácil nem sempre é o melhor.
-            </Heading>
-        </Box>
+        <Flex backgroundColor='#5b66a6' color='#FFFFFF' padding='5px 25px 25px 25px'>
+            <Box>
+                <Heading as='h2' size='3xl' noOfLines={1} textAlign='center'>
+                    Dio Bank
+                </Heading>
+                <Heading as='h4' size='md' noOfLines={1} textAlign='center'>
+                    o caminho mais fácil nem sempre é o melhor.
+                </Heading>
+            </Box>
+            {
+                isLoggedIn && (
+                    <>
+                        <Spacer />
+                        <Button onClick={() => logout()}>Sair</Button>
+                    </>
+                )
+            }
+        </Flex>
     )
 }
