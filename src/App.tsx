@@ -3,10 +3,13 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Layout } from './components/Layout/Layout';
 import { AppContextProvider } from './components/AppContext/AppContext';
 import MainRoutes from './routes';
+import { createLocalStorage, getAllLocalStorage } from './services/storage/storage';
   
 
 
 function App() {
+  
+  !getAllLocalStorage() && createLocalStorage()
   
   return (
     <BrowserRouter>

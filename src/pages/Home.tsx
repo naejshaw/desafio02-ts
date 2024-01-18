@@ -6,6 +6,7 @@ import { Botao } from "../components/Botao/Botao"
 import { login } from "../services/login/login"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from "../components/AppContext/AppContext"
+import { changeLocalStorage } from "../services/storage/storage"
 
 interface UserData{
     email: string
@@ -24,11 +25,13 @@ const Home = () => {
       const loggedIn = await login(email)
 
       if(!loggedIn){
-        alert('Email inválido!')
-      } else{
-        setIsLoggedIn(true)
-        navigate('/conta/1')
-      }
+        return alert('Email inválido!')
+      } 
+
+      setIsLoggedIn(true)
+      changeLocalStorage({login: true})
+      navigate('/conta/1')
+      
     }
     
 
